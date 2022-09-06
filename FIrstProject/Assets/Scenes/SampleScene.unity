@@ -348,6 +348,8 @@ MonoBehaviour:
   rotSpeed: 50
   hInput: 0
   vInput: 0
+  jumpForce: 1.5
+  playerRB: {fileID: 16413321}
 --- !u!54 &16413321
 Rigidbody:
   m_ObjectHideFlags: 0

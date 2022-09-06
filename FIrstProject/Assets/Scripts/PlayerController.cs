@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     public float hInput;
     //vertical input
     public float vInput;
+    //How high you jump
+    public float jumpForce;
+    //Reference Rigidbody component
+    public Rigidbody playerRB; 
    
 
 
@@ -22,8 +26,11 @@ public class PlayerController : MonoBehaviour
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
         //move character
-        transform.Rotate(Vector3.up, rotSpeed * hInput * Time.deltaTime); // left and right
+        transform.Rotate(Vector3.up, rotSpeed * hInput * Time.deltaTime); //left and right
         
         transform.Translate(Vector3.forward * speed * vInput * Time.deltaTime); //Forward
+
+        if(Input.GetKeyDown(KeyCode.Space)) // Check for spacebar press
+            playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Makes Player Jump
     }
 }
