@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
 
-    public Animatior animSpeed;
+    public Animator animSpeed;
     public Animation anim;
 
     // Start is called before the first frame update
@@ -19,11 +19,11 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Input.Get(KeyDown.P))
-       PlayAnim;  
+       if(Input.GetKeyDown(KeyCode.P))
+       PlayAnim();  
 
-       if(Input.Get(KeyDown.S))
-       StopAnim;  
+       if(Input.GetKeyDown(KeyCode.S))
+       StopAnim();  
     }
 
     void PlayAnim()
