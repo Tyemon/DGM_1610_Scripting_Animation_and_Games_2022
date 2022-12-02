@@ -21,6 +21,8 @@ public class FPSController : MonoBehaviour
         //Get components
         camera = Camera.main;
         rb = GetComponent<Rigidbody>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,10 @@ public class FPSController : MonoBehaviour
     void Update()
     {
         PlayerMove();
+        CameraLook();
+
+        if(Input.GetButtonDown("Jump"))
+            PlayerJump();
     }
 
     void PlayerMove()
@@ -39,11 +45,37 @@ public class FPSController : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * moveSpeed; //Move left and right(Input)
         float z = Input.GetAxis("Vertical") * moveSpeed; //Move Forward and Back(Player)
         
-        rb.velocity = new Vector3(x, rb.velocity.y, z); //Applys veclodity on x and z axes. It makes the player move
+        Vector3 dir = transform.right * x + transform.forward * z;
+        dir.y = rb.velocity.y;
+
+        rb.velocity = dir; //Applys veclodity on x and z axes. It makes the player move
     }
     void CameraLook()
     {
         float y = Input.GetAxis("Mouse X") * lookSensitivity;
         rotX += Input.GetAxis("Mouse Y") * lookSensitivity;
+    
+    
+    rotX = Mathf.Clamp(rotX, minLookX, maxLookX);
+
+    camera.transform.localRotation = Quaternion.Euler(-rotX, 0 ,0);
     }
+    void PlayerJump()
+    {
+    Ray ray = new Ray(transform.position, Vector3.down);
+
+    if(Physics.Raycast(ray, 1.1f))
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
+    public void GiveHealth(int amount)
+    {
+
+    }
+
+    public void GiveAmmo(int amount)
+    {
+        
+    }
+
 }
