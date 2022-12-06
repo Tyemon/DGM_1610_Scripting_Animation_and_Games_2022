@@ -15,7 +15,7 @@ using UnityEngine;
         [Header("Pickup Stats")]
         public PickupType type;
         public int healthAmount;
-        public int ammoAmmout;
+        public int ammoAmount;
 
         [Header ("Bobbing Anim")]
         public float rotationSpeed;
@@ -25,7 +25,7 @@ using UnityEngine;
         private Vector3 startPos;
         private bool bobbingUp;
         
-    }
+    
     
     
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ using UnityEngine;
     {
         if(other.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            FPSController player = other.GetComponent<FPSController>();
 
             switch(type)
             {
@@ -69,4 +69,4 @@ using UnityEngine;
         if(transform.position == startPos + offset)
             bobbingUp = !bobbingUp;
     }
-
+    }
