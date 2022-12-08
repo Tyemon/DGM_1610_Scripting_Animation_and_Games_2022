@@ -18,11 +18,10 @@ public class FPSController : MonoBehaviour
 
     void Awake()
     {
-        //Get components
+        Cursor.lockState = CursorLockMode.Locked;  //Get components
+        
         camera = Camera.main;
         rb = GetComponent<Rigidbody>();
-
-        Cursor.lockState = CursorLockMode.Locked;
     }
     // Start is called before the first frame update
     void Start()
@@ -59,6 +58,7 @@ public class FPSController : MonoBehaviour
     rotX = Mathf.Clamp(rotX, minLookX, maxLookX);
 
     camera.transform.localRotation = Quaternion.Euler(-rotX, 0 ,0);
+    transform.eulerAngles += Vector3.up * y;
     }
     void PlayerJump()
     {
