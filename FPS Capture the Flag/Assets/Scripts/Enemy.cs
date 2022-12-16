@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public int maxHP;
     public int scoreToGive;
     [Header("Movement")]
-    public float mmoveSpeed;
+    public float moveSpeed;
     public float attackRange;
 
     [Header("Path Info")]
